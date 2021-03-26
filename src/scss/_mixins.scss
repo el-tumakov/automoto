@@ -1,0 +1,27 @@
+@import "./_variables.scss";
+
+@mixin hover-active {
+  &:hover {
+    color: $accent;
+  }
+
+  &:active {
+    color: $additional-accent;
+  }
+}
+
+@mixin font {
+  font-style: normal;
+  font-family: "Open Sans", "Arial", sans-serif;
+}
+
+@mixin navigation-font {
+  @include font;
+  @include hover-active;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: $navigation-font;
+  text-decoration: none;
+}
