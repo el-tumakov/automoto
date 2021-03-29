@@ -7,25 +7,39 @@ const Footer = () => (
     <div className="wrapper">
       <ul className="footer__navigation footer-nav">
         <li className="footer-nav__item">
-          <Link className="footer-nav__link">Корпоративным клиентам</Link>
+          <Link className="footer-nav__link" to="#">
+            Корпоративным клиентам
+          </Link>
         </li>
         <li className="footer-nav__item">
-          <Link className="footer-nav__link">Клиентам</Link>
+          <Link className="footer-nav__link" to="#">
+            Клиентам
+          </Link>
         </li>
         <li className="footer-nav__item">
-          <Link className="footer-nav__link">Аренда авто</Link>
+          <Link className="footer-nav__link" to="#">
+            Аренда авто
+          </Link>
         </li>
         <li className="footer-nav__item">
-          <Link className="footer-nav__link">Каршеринг</Link>
+          <Link className="footer-nav__link" to="#">
+            Каршеринг
+          </Link>
         </li>
         <li className="footer-nav__item">
-          <Link className="footer-nav__link">Как продать авто</Link>
+          <Link className="footer-nav__link" to="#">
+            Как продать авто
+          </Link>
         </li>
         <li className="footer-nav__item">
-          <Link className="footer-nav__link">Traid-in</Link>
+          <Link className="footer-nav__link" to="#">
+            Traid-in
+          </Link>
         </li>
         <li className="footer-nav__item">
-          <Link className="footer-nav__link">Test draiv</Link>
+          <Link className="footer-nav__link" to="#">
+            Test draiv
+          </Link>
         </li>
       </ul>
     </div>

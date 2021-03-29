@@ -1,6 +1,6 @@
 @import "./_variables.scss";
 
-@mixin hover-active {
+@mixin font-hover-active {
   &:hover {
     color: $accent;
   }
@@ -16,12 +16,46 @@
 }
 
 @mixin navigation-font {
-  @include font;
-  @include hover-active;
+  @include font-hover-active;
 
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-  color: $navigation-font;
+  color: $font-semidark;
   text-decoration: none;
+}
+
+@mixin button {
+  @include font;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+@mixin hover-active-buton-default {
+  &:hover {
+    background-color: $additional-accent;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+@mixin hover-active-button-frame {
+  &:hover {
+    color: $font-light;
+
+    background-color: $accent;
+    border: 0;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
 }

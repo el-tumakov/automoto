@@ -8,6 +8,8 @@
 }
 
 body {
+  @include font;
+
   min-width: 1024px;
   margin: 0;
 }
