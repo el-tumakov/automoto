@@ -1,13 +1,77 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {CarImagesPropTypes} from "../../prop-types";
 import "./car-slider.scss";
 
+const MAX_PREVIEWS = 3;
+const COUNT_INACTIVE_SLIDES = 2;
+
+const getPreviewElements = (
+  maxPreviews,
+  activeSlideIndex,
+  previewsArray,
+  altsArray
+) => {
+  const previewElements = [];
+  let index = activeSlideIndex;
+
+  if (!altsArray[index + COUNT_INACTIVE_SLIDES]) {
+    index = altsArray.length - MAX_PREVIEWS;
+  }
+
+  for (
+    let i = index;
+    previewElements.length < maxPreviews && i < altsArray.length;
+    i++
+  ) {
+    previewElements.push(
+      <li className="car-slider__item" key={i}>
+        <picture className="car-slider__preview-picture">
+          <source
+            type="image/webp"
+            srcSet={`${previewsArray.webp.x1[i]} 1x, ${previewsArray.webp.x2[i]} 2x`}
+          />
+          <img
+            className="car-slider__preview"
+            src={previewsArray.jpg.x1[i]}
+            srcSet={`${previewsArray.jpg.x2[i]} 2x`}
+            width="128"
+            height="80"
+            alt={altsArray[i]}
+          />
+        </picture>
+      </li>
+    );
+  }
+
+  return previewElements;
+};
+
 const CarSlider = (props) => {
   const {carsImages} = props;
-
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const rightButton = useRef(null);
+  const leftButton = useRef(null);
 
-  return carsImages ? (
+  const handleRightClick = () => {
+    carsImages.alts[activeSlideIndex + 1] &&
+      setActiveSlideIndex(activeSlideIndex + 1);
+  };
+
+  const handleLeftClick = () => {
+    carsImages.alts[activeSlideIndex - 1] &&
+      setActiveSlideIndex(activeSlideIndex - 1);
+  };
+
+  useEffect(() => {
+    !carsImages.alts[activeSlideIndex + 1]
+      ? (rightButton.current.disabled = true)
+      : (rightButton.current.disabled = false);
+    !carsImages.alts[activeSlideIndex - 1]
+      ? (leftButton.current.disabled = true)
+      : (leftButton.current.disabled = false);
+  }, [activeSlideIndex, carsImages]);
+
+  return (
     <section className="car-slider car-screen__slider">
       <h2 className="visually-hidden">Фотографии Марпех 11</h2>
       <picture className="car-slider__picture">
@@ -29,40 +93,29 @@ const CarSlider = (props) => {
         <button
           className="car-slider__control car-slider__control--left"
           type="button"
-          disabled
+          ref={leftButton}
+          onClick={handleLeftClick}
         >
           <span className="visually-hidden">Листать слайдер влево</span>
         </button>
         <ul className="car-slider__images">
-          {carsImages.alts.map((item, index) => (
-            <li className="car-slider__item" key={index}>
-              <picture className="car-slider__preview-picture">
-                <source
-                  type="image/webp"
-                  srcSet={`${carsImages.previews.webp.x1[index]} 1x, ${carsImages.previews.webp.x2[index]} 2x`}
-                />
-                <img
-                  className="car-slider__preview"
-                  src={carsImages.previews.jpg.x1[index]}
-                  srcSet={`${carsImages.previews.jpg.x2[index]} 2x`}
-                  width="128"
-                  height="80"
-                  alt={item}
-                />
-              </picture>
-            </li>
-          ))}
+          {getPreviewElements(
+            MAX_PREVIEWS,
+            activeSlideIndex,
+            carsImages.previews,
+            carsImages.alts
+          )}
         </ul>
         <button
           className="car-slider__control car-slider__control--right"
           type="button"
+          ref={rightButton}
+          onClick={handleRightClick}
         >
           <span className="visually-hidden">Листать слайдер вправо</span>
         </button>
       </div>
     </section>
-  ) : (
-    ""
   );
 };
 

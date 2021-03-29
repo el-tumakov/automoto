@@ -6,7 +6,7 @@ import "./car-info.scss";
 const CarInfo = (props) => {
   const {car} = props;
 
-  return car.name ? (
+  return (
     <section className="car-info car-screen__info">
       <h1 className="car-info__title">{car.name}</h1>
       <ul className="car-info__list">
@@ -38,8 +38,6 @@ const CarInfo = (props) => {
         В кредит от 11 000 ₽
       </Link>
     </section>
-  ) : (
-    ""
   );
 };
 

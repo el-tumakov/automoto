@@ -27,7 +27,7 @@ const Tabs = (props) => {
           </button>
         </li>
       </ul>
-      {car.name ? <Specification car={car} /> : ""}
+      <Specification car={car} />
       <Reviews />
       <Contacts />
     </div>

@@ -11,7 +11,7 @@ const getRatingRadioElements = (maxRating, ratingValue, handleChange) => {
     ratingValue >= i ? (className = "active") : (className = "inactive");
 
     ratingElements.push(
-      <>
+      <React.Fragment key={i}>
         <label
           className={`review-popup__rating review-popup__rating--${className}`}
           htmlFor={`review-popup__rating-${i}`}
@@ -26,7 +26,7 @@ const getRatingRadioElements = (maxRating, ratingValue, handleChange) => {
           value={i}
           onChange={handleChange}
         />
-      </>
+      </React.Fragment>
     );
   }
 
