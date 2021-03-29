@@ -1,13 +1,19 @@
 //color-names
 $white: #ffffff;
+$black: #000000;
 $whitesmoke: #f5f5f9;
 $darkslategray: #48494d;
 $crimson: #d12136;
 $firebrick: #bd0c21;
+$gainsboro: #d7d9df;
 
 //color-types
 $major-bg: $white;
 $minor-bg: $whitesmoke;
-$navigation-font: $darkslategray;
+$font-dark: $black;
+$font-semidark: $darkslategray;
+$font-light: $white;
 $accent: $crimson;
 $additional-accent: $firebrick;
+$border: $gainsboro;
+$border-form: rgba($darkslategray, 0.2);
