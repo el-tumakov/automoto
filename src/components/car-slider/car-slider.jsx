@@ -74,7 +74,7 @@ const CarSlider = (props) => {
   return (
     <section className="car-slider car-screen__slider">
       <h2 className="visually-hidden">Фотографии Марпех 11</h2>
-      <picture className="car-slider__picture">
+      <picture className="car-slider__picture car-slider__picture--new-model">
         <source
           type="image/webp"
           srcSet={`${carsImages.desktop.webp.x1[activeSlideIndex]} 1x, 
