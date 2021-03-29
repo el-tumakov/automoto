@@ -84,7 +84,7 @@ const Reviews = (props) => {
             ))}
           </ul>
         ) : (
-          ""
+          <span className="reviews__blank">Отзывов нет</span>
         )}
         <button className="reviews__review-button">Оставить отзыв</button>
       </section>
