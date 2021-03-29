@@ -4,7 +4,7 @@ import {ActionCreator} from "../../store/action";
 import moment from "moment";
 import PropTypes from "prop-types";
 import ReviewPopup from "../review-popup/review-popup";
-import {carReviewsPropTypes, CarReviewsPropTypes} from "../../prop-types";
+import {CarReviewsPropTypes} from "../../prop-types";
 import {reviews as reviewsMocks} from "../../mocks/reviews";
 import "moment/locale/ru";
 import "./reviews.scss";

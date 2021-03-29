@@ -21,13 +21,15 @@ const CarScreen = (props) => {
   return (
     <>
       <Header />
-      <main className="car-screen wrapper">
-        <div className="car-screen__top">
-          <CarInfo car={car} />
-          <CarSlider carsImages={car.images} />
-        </div>
-        <Tabs car={car} />
-      </main>
+      {car.id && (
+        <main className="car-screen wrapper">
+          <div className="car-screen__top">
+            <CarInfo car={car} />
+            <CarSlider carsImages={car.images} />
+          </div>
+          <Tabs car={car} />
+        </main>
+      )}
       <Footer />
     </>
   );
