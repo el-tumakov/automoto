@@ -120,8 +120,6 @@ const ReviewPopup = (props) => {
     localStorage.setItem("rating", "");
     localStorage.setItem("comment", "");
 
-    console.log(carReviews);
-
     setPopupShown(false);
   };
 

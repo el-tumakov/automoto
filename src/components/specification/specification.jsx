@@ -2,6 +2,15 @@ import React from "react";
 import {CarPropTypes} from "../../prop-types";
 import "./specification.scss";
 
+const SpecificationNames = {
+  Бензин: "Бензиновый",
+  Дизель: "Дизельный",
+  Механика: "Механическая",
+  Автомат: "Автоматическая",
+  Вариатор: "Вариаторная",
+  Робот: "Роботизированная",
+};
+
 const Specification = (props) => {
   const {car} = props;
 
@@ -14,7 +23,9 @@ const Specification = (props) => {
             <th className="specification__title" scrope="row">
               Трансмиссия
             </th>
-            <td className="specification__value">{car.transmission}</td>
+            <td className="specification__value">
+              {SpecificationNames[car.transmission]}
+            </td>
           </tr>
           <tr className="specification__row">
             <th className="specification__title" scrope="row">
@@ -26,7 +37,9 @@ const Specification = (props) => {
             <th className="specification__title" scrope="row">
               Тип двигателя
             </th>
-            <td className="specification__value">{car.engineType}</td>
+            <td className="specification__value">
+              {SpecificationNames[car.engineType]}
+            </td>
           </tr>
           <tr className="specification__row">
             <th className="specification__title" scrope="row">
