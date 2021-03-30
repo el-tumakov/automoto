@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 import moment from "moment";
@@ -31,7 +31,12 @@ const getRatingElements = (maxRating, ratingValue) => {
 };
 
 const Reviews = (props) => {
-  const {carReviews, onLoadCarReviews} = props;
+  const {carReviews, onLoadCarReviews, onSaveReview} = props;
+  const [isPopupShown, setPopupShown] = useState(false);
+
+  const handleClick = () => {
+    setPopupShown(true);
+  };
 
   useEffect(() => {
     onLoadCarReviews(reviewsMocks.find((item) => (item.carId = 1)).carReviews);
@@ -86,9 +91,17 @@ const Reviews = (props) => {
         ) : (
           <span className="reviews__blank">Отзывов нет</span>
         )}
-        <button className="reviews__review-button">Оставить отзыв</button>
+        <button className="reviews__review-button" onClick={handleClick}>
+          Оставить отзыв
+        </button>
       </section>
-      <ReviewPopup />
+      {isPopupShown && (
+        <ReviewPopup
+          carReviews={carReviews}
+          setPopupShown={setPopupShown}
+          onSaveReview={onSaveReview}
+        />
+      )}
     </>
   );
 };
@@ -96,6 +109,7 @@ const Reviews = (props) => {
 Reviews.propTypes = {
   carReviews: CarReviewsPropTypes,
   onLoadCarReviews: PropTypes.func.isRequired,
+  onSaveReview: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (store) => ({
@@ -105,6 +119,9 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLoadCarReviews(reviews) {
     dispatch(ActionCreator.loadCarReviews(reviews));
+  },
+  onSaveReview(review) {
+    dispatch(ActionCreator.saveReview(review));
   },
 });
 
