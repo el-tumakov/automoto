@@ -1,23 +1,26 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import {CarPropTypes} from "../../prop-types";
 import Specification from "../specification/specification";
 import Reviews from "../reviews/reviews";
 import Contacts from "../contacts/contacts";
 import "./tabs.scss";
 
-const TabsName = {
-  SPECIFICATION: "SPECIFICATION",
-  REVIEWS: "REVIEWS",
-  CONTACTS: "CONTACTS",
+const TAB_KEYCODE = 9;
+const MAX_TABS = 3;
+
+const TabsCode = {
+  SPECIFICATION: 1,
+  REVIEWS: 2,
+  CONTACTS: 3,
 };
 
 const getActiveTabElement = (activeTab, car) => {
   switch (activeTab) {
-    case TabsName.SPECIFICATION:
+    case TabsCode.SPECIFICATION:
       return <Specification car={car} />;
-    case TabsName.REVIEWS:
+    case TabsCode.REVIEWS:
       return <Reviews />;
-    case TabsName.CONTACTS:
+    case TabsCode.CONTACTS:
       return <Contacts />;
     default:
       return;
@@ -26,19 +29,44 @@ const getActiveTabElement = (activeTab, car) => {
 
 const Tabs = (props) => {
   const {car} = props;
-  const [activeTab, setActiveTab] = useState(TabsName.SPECIFICATION);
+  const [activeTab, setActiveTab] = useState(TabsCode.SPECIFICATION);
 
   const HandleSpecificationButtonClick = () => {
-    setActiveTab(TabsName.SPECIFICATION);
+    setActiveTab(TabsCode.SPECIFICATION);
   };
 
   const HandleReviewsButtonClick = () => {
-    setActiveTab(TabsName.REVIEWS);
+    setActiveTab(TabsCode.REVIEWS);
   };
 
   const HandleContactsButtonClick = () => {
-    setActiveTab(TabsName.CONTACTS);
+    setActiveTab(TabsCode.CONTACTS);
   };
+
+  const tabKeydownHandler = useCallback(
+    (evt) => {
+      if (evt.keyCode === TAB_KEYCODE) {
+        evt.preventDefault();
+
+        setActiveTab(() => {
+          if (activeTab === MAX_TABS) {
+            return 1;
+          }
+
+          return activeTab + 1;
+        });
+      }
+    },
+    [activeTab, setActiveTab]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", tabKeydownHandler);
+
+    return () => {
+      window.removeEventListener("keydown", tabKeydownHandler);
+    };
+  }, [tabKeydownHandler]);
 
   return (
     <div className="tabs car-screen__tabs">
@@ -46,7 +74,7 @@ const Tabs = (props) => {
         <li className="tabs__item">
           <button
             className={`tabs__button ${
-              activeTab === TabsName.SPECIFICATION && "tabs__button--active"
+              activeTab === TabsCode.SPECIFICATION && "tabs__button--active"
             }`}
             type="button"
             onClick={HandleSpecificationButtonClick}
@@ -57,7 +85,7 @@ const Tabs = (props) => {
         <li className="tabs__item">
           <button
             className={`tabs__button ${
-              activeTab === TabsName.REVIEWS && "tabs__button--active"
+              activeTab === TabsCode.REVIEWS && "tabs__button--active"
             }`}
             type="button"
             onClick={HandleReviewsButtonClick}
@@ -68,7 +96,7 @@ const Tabs = (props) => {
         <li className="tabs__item">
           <button
             className={`tabs__button ${
-              activeTab === TabsName.CONTACTS && "tabs__button--active"
+              activeTab === TabsCode.CONTACTS && "tabs__button--active"
             }`}
             type="button"
             onClick={HandleContactsButtonClick}
