@@ -1,4 +1,5 @@
 import React from "react";
+import ContactsMap from "../contacts-map/contacts-map";
 import "./contacts.scss";
 
 const Contacts = () => (
@@ -13,7 +14,7 @@ const Contacts = () => (
       <h4>E-mail</h4>
       <p>info@avto-moto.ru</p>
     </div>
-    <div className="contacts__map"></div>
+    <ContactsMap className="contacts__map" />
   </section>
 );
 
