@@ -148,7 +148,7 @@
 
 .review-popup__submit {
   @include button;
-  @include hover-active-buton-default;
+  @include hover-active-button-default;
 
   width: 190px;
   min-height: 52px;

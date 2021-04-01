@@ -176,7 +176,7 @@ const ReviewPopup = (props) => {
         <form className="review-popup__form" onSubmit={handleSubmit}>
           <div className="review-popup__form-wrap">
             <div className="review-popup__left-side">
-              <label className="visually-hidden" htmlFor="author">
+              <label className="visually-hidden" htmlFor="review-popup__author">
                 Напишите ваше имя
               </label>
               <span
@@ -201,7 +201,7 @@ const ReviewPopup = (props) => {
                 onChange={handleAuthorChange}
                 autoFocus
               />
-              <label className="visually-hidden" htmlFor="plus">
+              <label className="visually-hidden" htmlFor="review-popup__plus">
                 Опишите достоинства товара
               </label>
               <input
@@ -213,7 +213,7 @@ const ReviewPopup = (props) => {
                 defaultValue={plusValue}
                 onChange={handlePlusChange}
               />
-              <label className="visually-hidden" htmlFor="minus">
+              <label className="visually-hidden" htmlFor="review-popup__minus">
                 Опишите недостатки товара
               </label>
               <input
@@ -240,7 +240,9 @@ const ReviewPopup = (props) => {
                   handleRatingMouseLeave
                 )}
               </div>
-              <label className="visually-hidden">Оставьте комментарий</label>
+              <label className="" htmlFor="review-popup__comment">
+                Оставьте комментарий
+              </label>
               <span
                 className={`review-popup__error review-popup__error--comment 
                   ${hasCommentError && "review-popup__error--enable"}
