@@ -12,7 +12,7 @@
 
 @mixin font {
   font-style: normal;
-  font-family: "Open Sans", "Arial", sans-serif;
+  font-family: "opensans", "arial", sans-serif;
 }
 
 @mixin navigation-font {
@@ -37,7 +37,7 @@
   text-decoration: none;
 }
 
-@mixin hover-active-buton-default {
+@mixin hover-active-button-default {
   &:hover {
     background-color: $additional-accent;
   }

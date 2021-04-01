@@ -30,7 +30,7 @@
 }
 
 .tabs__button--active {
-  @include hover-active-buton-default;
+  @include hover-active-button-default;
 
   color: $font-light;
 
