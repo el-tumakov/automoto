@@ -169,6 +169,12 @@ const ReviewPopup = (props) => {
     localStorage.setItem("comment", commentValue);
   }, [authorValue, plusValue, minusValue, commentValue, ratingValue]);
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => (document.body.style.overflow = "auto");
+  }, []);
+
   return (
     <section className="review-popup">
       <div className="review-popup__wrap" ref={popupElement}>
@@ -240,7 +246,10 @@ const ReviewPopup = (props) => {
                   handleRatingMouseLeave
                 )}
               </div>
-              <label className="" htmlFor="review-popup__comment">
+              <label
+                className="visually-hidden"
+                htmlFor="review-popup__comment"
+              >
                 Оставьте комментарий
               </label>
               <span
