@@ -5,9 +5,6 @@ import Reviews from "../reviews/reviews";
 import Contacts from "../contacts/contacts";
 import "./tabs.scss";
 
-const TAB_KEYCODE = 9;
-const MAX_TABS = 3;
-
 const TabsCode = {
   SPECIFICATION: 1,
   REVIEWS: 2,
@@ -31,42 +28,17 @@ const Tabs = (props) => {
   const {car} = props;
   const [activeTab, setActiveTab] = useState(TabsCode.SPECIFICATION);
 
-  const HandleSpecificationButtonClick = () => {
+  const HandleSpecificationButtonFocus = () => {
     setActiveTab(TabsCode.SPECIFICATION);
   };
 
-  const HandleReviewsButtonClick = () => {
+  const HandleReviewsButtonFocus = () => {
     setActiveTab(TabsCode.REVIEWS);
   };
 
-  const HandleContactsButtonClick = () => {
+  const HandleContactsButtonFocus = () => {
     setActiveTab(TabsCode.CONTACTS);
   };
-
-  const tabKeydownHandler = useCallback(
-    (evt) => {
-      if (evt.keyCode === TAB_KEYCODE) {
-        evt.preventDefault();
-
-        setActiveTab(() => {
-          if (activeTab === MAX_TABS) {
-            return 1;
-          }
-
-          return activeTab + 1;
-        });
-      }
-    },
-    [activeTab, setActiveTab]
-  );
-
-  useEffect(() => {
-    window.addEventListener("keydown", tabKeydownHandler);
-
-    return () => {
-      window.removeEventListener("keydown", tabKeydownHandler);
-    };
-  }, [tabKeydownHandler]);
 
   return (
     <div className="tabs car-screen__tabs">
@@ -77,7 +49,7 @@ const Tabs = (props) => {
               activeTab === TabsCode.SPECIFICATION && "tabs__button--active"
             }`}
             type="button"
-            onClick={HandleSpecificationButtonClick}
+            onFocus={HandleSpecificationButtonFocus}
           >
             Характеристики
           </button>
@@ -88,7 +60,7 @@ const Tabs = (props) => {
               activeTab === TabsCode.REVIEWS && "tabs__button--active"
             }`}
             type="button"
-            onClick={HandleReviewsButtonClick}
+            onFocus={HandleReviewsButtonFocus}
           >
             Отзывы
           </button>
@@ -99,7 +71,7 @@ const Tabs = (props) => {
               activeTab === TabsCode.CONTACTS && "tabs__button--active"
             }`}
             type="button"
-            onClick={HandleContactsButtonClick}
+            onFocus={HandleContactsButtonFocus}
           >
             Контакты
           </button>
