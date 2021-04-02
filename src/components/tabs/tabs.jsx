@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, {useState} from "react";
 import {CarPropTypes} from "../../prop-types";
 import Specification from "../specification/specification";
 import Reviews from "../reviews/reviews";
