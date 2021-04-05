@@ -162,11 +162,11 @@ const ReviewPopup = (props) => {
   }, [escKeydownHandler, windowClickHandler]);
 
   useEffect(() => {
-    localStorage.setItem("author", authorValue);
-    localStorage.setItem("plus", plusValue);
-    localStorage.setItem("minus", minusValue);
-    localStorage.setItem("rating", ratingValue);
-    localStorage.setItem("comment", commentValue);
+    localStorage.setItem("author", authorValue || "");
+    localStorage.setItem("plus", plusValue || "");
+    localStorage.setItem("minus", minusValue || "");
+    localStorage.setItem("rating", ratingValue || "");
+    localStorage.setItem("comment", commentValue || "");
   }, [authorValue, plusValue, minusValue, commentValue, ratingValue]);
 
   useEffect(() => {

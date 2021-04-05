@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
+import {useScrollbarSize} from "react-scrollbar-size";
 import PropTypes from "prop-types";
 import Header from "../header/header";
 import CarSlider from "../car-slider/car-slider";
@@ -11,12 +12,19 @@ import {CarPropTypes} from "../../prop-types";
 import {cars as carsMocks} from "../../mocks/cars";
 import "./car-screen.scss";
 
+const DESKTOP_WIDTH = 1024;
+
 const CarScreen = (props) => {
   const {car, onLoadCar} = props;
+  const {width} = useScrollbarSize();
 
   useEffect(() => {
     onLoadCar(carsMocks[0]);
   }, [onLoadCar]);
+
+  useEffect(() => {
+    document.body.style.minWidth = `${DESKTOP_WIDTH - width}px`;
+  }, [width]);
 
   return (
     <>
